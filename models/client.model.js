@@ -12,13 +12,13 @@ module.exports = class Client {
         return await db.query (
             `insert into "Clients" ( "phone_number", "password", "first_name", "last_name") 
             values 
-            ($1, $2, $3, $4)`, 
+            ($1, $2, $3, $4)
+            returning *`, 
             [this.phoneNumber, this.password, this.firstName, this.lastName]
         );
     }
 
     static async get() {
-        console.log('getAll')
         return await db.query (
             `select * 
             from "Clients"`
@@ -26,12 +26,30 @@ module.exports = class Client {
     }
 
     static async getOne(id) {
-        console.log('getOne')
         return await db.query (
             `select * 
             from "Clients"
             where "id_client" = $1
             limit 1`,
+            [id]
+        );
+    }
+
+    async update(id) {
+        return await db.query (
+            `update "Clients"
+            set "first_name" = $2, "last_name" = $3, "phone_number" = $4, "password" = $5
+            where "id_client" = $1
+            returning *`,
+            [id, this.firstName, this.lastName, this.phoneNumber, this.password]
+        );
+    }
+
+    static async delete(id) {
+        return await db.query (
+            `delete from "Clients" 
+            where "id_client" = $1
+            returning *`,
             [id]
         );
     }
