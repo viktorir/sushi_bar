@@ -35,7 +35,7 @@ class ClientController {
         const { id } = req.params;
         
         res.status(200).json((await Client.delete(id)).rows[0]);
-    }   
+    }
 }
 
 module.exports = new ClientController()
