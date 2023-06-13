@@ -1,4 +1,4 @@
-const Product = require('../models/product.model');
+const Product = require(`../models/product.model`);
 
 class ProductController {
     async create(req, res, next) {
@@ -38,4 +38,4 @@ class ProductController {
     }
 }
 
-module.exports = new ProductController()
+module.exports = new ProductController();

@@ -1,4 +1,4 @@
-const Client = require('../models/client.model');
+const Client = require(`../models/client.model`);
 
 class ClientController {
     async create(req, res, next) {
@@ -38,4 +38,4 @@ class ClientController {
     }
 }
 
-module.exports = new ClientController()
+module.exports = new ClientController();
