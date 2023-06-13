@@ -35,6 +35,16 @@ module.exports = class Client {
         );
     }
 
+    static async getOneFromPhone(phoneNumber) {
+        return await db.query (
+            `select * 
+            from "Clients"
+            where "phone_number" = $1
+            limit 1`,
+            [phoneNumber]
+        );
+    }
+
     async update(id) {
         return await db.query (
             `update "Clients"
